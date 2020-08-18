@@ -1,0 +1,43 @@
+body {
+    width: 100%;
+    text-align: justify;  
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.duck1{
+    z-index:3;
+    position: relative;
+    left: 948px;
+    top: 480px;
+    background-color: red;
+    height: 30px;
+    width: 30px;
+}
+
+.duck2{
+    z-index:3;
+    position: relative;
+    left: 1792px;
+    top: 511px;
+    background-color: yellow;
+    height: 30px;
+    width: 30px;
+}
+
+.lake{
+    z-index:2;
+    position: absolute;
+    left: 0;
+    top:480px;
+    height:280px;
+    width: 100%;
+ 
+}
+
+.lake:hover{
+    /* background-color: yellowgreen; */
+    cursor:url("uvcl.jpg"),auto;
+}
