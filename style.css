@@ -1,6 +1,7 @@
 body {
     width: 100%;
     text-align: justify;  
+    margin: 0;
 }
 
 * {

@@ -6,39 +6,37 @@ let xzb;
 let x1 = 948;
 let y1 = 530;
 
+function dist(x1, y1, x2, y2) {
+    return Math.sqrt(
+        Math.pow(x1 - x2, 2),
+        Math.pow(y1 - y2, 2)
+    );
+}
 
 function zuobiao(event) {
     xzb = event.clientX;
     yzb = event.clientY;
-    if (xzb > x1 && yzb > y1) {
-        let distance = Math.sqrt(Math.pow(xzb - x1, 2) + Math.pow(yzb - y1, 2));
-        let duration = 100;
-        let f = () => {
-            if (Math.abs(yzb - y1) > 10) {
-                setTimeout(
-                    () => {
-                        let dx = 0;
-                        let dy = 0;
-                        // if(yzb - y1 > 0) {
-                        dx = 5 * (xzb - x1) / distance;
-                        dy = 5 * (yzb - y1) / distance;
-                        // } else {
-                        //     dx = -5*(xzb-x1)/distance;
-                        //     dy = -5*(yzb-y1)/distance;
-                        // }
-                        let top = y1;
-                        duck1.style.top = (top + dy) + 'px';
-                        let left = x1;
-                        duck1.style.top = (left + dx) + 'px';
+    let distance = dist(xzb, yzb, duck1.offsetTop, duck1.offsetLeft);
+    let duration = 100;
+    let f = () => {
+        if (dist(xzb, yzb, duck1.offsetTop, duck1.offsetLeft) > 10) {
+            setTimeout(
+                () => {
+                    let dx = 0;
+                    let dy = 0;
 
-                        f();
-                    }, 50
-                );
-            }
-        };
-        f();
+                    dx = 5 * (xzb - duck1.offsetLeft) / distance;
+                    dy = 5 * (yzb - duck1.offsetTop) / distance;
 
+                    duck1.style.top = (duck1.offsetTop + dy) + 'px';
+                    duck1.style.left = (duck1.offsetLeft + dx) + 'px';
+
+                    f();
+                }, 50
+            );
+        }
     }
+    f();
 }
 
 function toushi(event) {
