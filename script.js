@@ -5,33 +5,45 @@ let yzb;
 let xzb;
 let x1 = 948;
 let y1 = 530;
+let x2 = 1792;
+let y2 = 511;
 
-function dist(x1, y1, x2, y2) {
+
+function dist(clickx,clicky, fixx, fixy) {
+    // alert(Math.pow(clickx - fixx, 2));
+    // alert(Math.pow(clicky - fixy, 2));
+    // alert(Math.sqrt(
+    //     Math.pow(clickx - fixx, 2)+Math.pow(clicky - fixy, 2)
+    // ));
     return Math.sqrt(
-        Math.pow(x1 - x2, 2),
-        Math.pow(y1 - y2, 2)
+        Math.pow(clickx - fixx, 2)+Math.pow(clicky - fixy, 2)
     );
+    
 }
+
 
 function zuobiao(event) {
     xzb = event.clientX;
     yzb = event.clientY;
-    let distance = dist(xzb, yzb, duck1.offsetTop, duck1.offsetLeft);
+    let distance1 = dist(xzb, yzb, x1, y1);
+    // alert(distance1);
+    let distance2 = dist(xzb, yzb, x2, y2);
     let duration = 100;
     let f = () => {
-        if (dist(xzb, yzb, duck1.offsetTop, duck1.offsetLeft) > 10) {
+        if (dist(xzb, yzb, duck1.offsetTop, duck1.offsetLeft) > 100) {
+            // alert(dist(xzb, yzb, duck1.offsetTop, duck1.offsetLeft)+','+xzb+","+yzb+","+duck1.offsetLeft+','+duck1.offsetTop ); 
             setTimeout(
                 () => {
-                    let dx = 0;
-                    let dy = 0;
+                    let dx1 = 0;
+                    let dy1 = 0;
 
-                    dx = 5 * (xzb - duck1.offsetLeft) / distance;
-                    dy = 5 * (yzb - duck1.offsetTop) / distance;
+                    dx1 = 5 * (xzb - x1) / distance1;
+                    dy1 = 5 * (yzb - y1) / distance1;
 
-                    duck1.style.top = (duck1.offsetTop + dy) + 'px';
-                    duck1.style.left = (duck1.offsetLeft + dx) + 'px';
+                    duck1.style.top = (duck1.offsetTop + dy1) + 'px';
+                    duck1.style.left = (duck1.offsetLeft + dx1) + 'px';
 
-                    f();
+                    // f();
                 }, 50
             );
         }
